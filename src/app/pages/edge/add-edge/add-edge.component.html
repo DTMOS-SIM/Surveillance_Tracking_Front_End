@@ -1,0 +1,52 @@
+<form nz-form [formGroup]="edgeForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Edge ID</nz-form-label>
+    <nz-form-control nzErrorTip="ID" [nzSm]="22" [nzXs]="30">
+      <nz-input-group nzPrefixIcon="idcard">
+        <input formControlName="id" nz-input placeholder="Auto Generated"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Source Node</nz-form-label>
+    <nz-form-control nzErrorTip="Source" [nzSm]="22" [nzXs]="30">
+      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a source" formControlName="source">
+        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Target Node</nz-form-label>
+    <nz-form-control nzErrorTip="Target" [nzSm]="22" [nzXs]="30">
+      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a target" formControlName="target">
+        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Date Created</nz-form-label>
+    <nz-form-control nzErrorTip="DateCreated">
+      <nz-form-control [nzSm]="22" [nzXs]="30">
+        <nz-date-picker nzShowTime formControlName="dateCreated"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Date Updated</nz-form-label>
+    <nz-form-control [nzSm]="22" [nzXs]="30">
+      <nz-date-picker nzShowTime formControlName="dateUpdated"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row>
+    <div nz-col nzFlex="auto"></div>
+    <div nz-col nzFlex="100px">
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Submit</button>
+    </div>
+  </div>
+</form>
+<nz-divider nzPlain nzText="Partners"></nz-divider>
+

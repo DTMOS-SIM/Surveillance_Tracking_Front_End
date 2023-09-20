@@ -1,0 +1,9 @@
+<!-- Chart Data -->
+<my-chart (chartClick)="onChartClick($event)"></my-chart>
+
+<!-- Container details data -->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Details" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <node-details [node]="nodeDetails"></node-details>
+  </ng-container>
+</nz-modal>

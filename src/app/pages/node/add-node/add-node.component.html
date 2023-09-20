@@ -1,0 +1,96 @@
+
+<form nz-form [formGroup]="nodeForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Node ID</nz-form-label>
+    <nz-form-control nzErrorTip="ID" [nzSm]="22" [nzXs]="30">
+      <nz-input-group nzPrefixIcon="idcard">
+        <input formControlName="id" nz-input placeholder="Auto Generated"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Node Name</nz-form-label>
+    <nz-form-control nzErrorTip="ID" [nzSm]="22" [nzXs]="30">
+      <nz-input-group nzPrefixIcon="field-string">
+        <input formControlName="name" nz-input placeholder="Please add a name"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Date Created</nz-form-label>
+    <nz-form-control nzErrorTip="DateCreated">
+      <nz-form-control [nzSm]="22" [nzXs]="30">
+        <nz-date-picker nzShowTime formControlName="dateCreated"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="2" [nzXs]="15">Date Updated</nz-form-label>
+    <nz-form-control [nzSm]="22" [nzXs]="30">
+      <nz-date-picker nzShowTime formControlName="dateUpdated"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row>
+    <div nz-col nzFlex="auto"></div>
+    <div nz-col nzFlex="100px">
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" [disabled]="!nodeForm.valid">Submit</button>
+    </div>
+  </div>
+</form>
+<!--Divider-->
+<nz-divider nzPlain nzText="Partners"></nz-divider>
+<!--Add surveillance button-->
+<div nz-row>
+  <div nz-col nzFlex="100px">
+    <button nz-button [nzType]="'dashed'" (click)="showModal()"><span>Add Adjacency Surveillance</span></button>
+  </div>
+  <div nz-col nzFlex="auto"></div>
+</div>
+<!-- Surveillance tracking list-->
+<nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+  <nz-list-item *ngFor="let item of addedPartners">
+    <nz-list-item-meta nzAvatar="../../../assets/bullet-point.png" nzDescription={{item.id}}>
+      <nz-list-item-meta-title>
+        <a>{{ item.name }}</a>
+      </nz-list-item-meta-title>
+    </nz-list-item-meta>
+    Start: {{ item.angle_start }}&deg; End: {{ item.angle_end }}&deg;
+  </nz-list-item>
+  <nz-list-empty *ngIf="addedPartners.length === 0"></nz-list-empty>
+</nz-list>
+
+
+<nz-modal [(nzVisible)]="partnerModal" nzTitle="Add Adjacency Surveillance" (nzOnCancel)="cancelPartner()" (nzOnOk)="confirmPartner()">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="addPartnerForm">
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSm]="8" [nzXs]="15">Product Name</nz-form-label>
+        <nz-form-control nzErrorTip="Name" [nzSm]="20" [nzXs]="30">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" formControlName="name">
+            <nz-option *ngFor="let surveillance of surveillance_select_list"
+                       nzLabel={{surveillance.name}}
+                       nzValue={{surveillance.id}}>
+              {{ surveillance.name }}
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSm]="8" [nzXs]="15">Start Angle</nz-form-label>
+        <nz-form-control nzErrorTip="Please input your starting angle!" [nzSm]="20" [nzXs]="30">
+          <nz-input-group nzPrefixIcon="radius-setting">
+            <nz-input-number formControlName="angle_start" [nzStep]="1"></nz-input-number>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSm]="8" [nzXs]="15">End Angle</nz-form-label>
+        <nz-form-control nzErrorTip="Please input your ending angle!" [nzSm]="20" [nzXs]="30">
+          <nz-input-group nzPrefixIcon="radius-setting">
+            <nz-input-number formControlName="angle_end" [nzStep]="1"></nz-input-number>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>
